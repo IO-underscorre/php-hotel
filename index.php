@@ -51,6 +51,97 @@ $hotels = [
 </head>
 
 <body>
+    <div class="page-wrapper">
+        <header>
+            <h1>
+                PHP Hotels
+            </h1>
+        </header>
+
+        <main>
+            <form class="filter-form" action="index.php" method="GET">
+                <div class="inputs-section">
+                    <label class="input-group">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                        Parking
+                    </label>
+                </div>
+
+                <div class="inputs-section">
+                    <div class="input-group">
+                        <input type="number" name="city-distance" min="0" step="0.1">
+                        <label>
+                            City center distance
+                        </label>
+                    </div>
+                </div>
+
+                <div class="inputs-section vote">
+                    <div class="input-group">
+                        <input type="radio" name="minimum-value" value="1">
+                        <label class="input-group">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="radio" name="minimum-value" value="2">
+                        <label class="input-group">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="radio" name="minimum-value" value="3">
+                        <label class="input-group">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="radio" name="minimum-value" value="4">
+                        <label class="input-group">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="radio" name="minimum-value" value="5">
+                        <label class="input-group">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="inputs-section">
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </div>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col" class="hotel-name"></th>
+                        <th scope="col" class="hotel-parking"></th>
+                        <th scope="col" class="hotel-vote"></th>
+                        <th scope="col" class="hotel-distance"></th>
+                        <th scope="col" class="hotel-description"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="hotel-name"></th>
+                        <td class="hotel-parking"></td>
+                        <td class="hotel-vote"></td>
+                        <td class="hotel-distance"></td>
+                        <td class="hotel-description"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+    </div>
 </body>
 
 </html>

@@ -72,7 +72,7 @@ $hotels = [
                     <div class="input-group">
                         <input type="number" name="city-distance" min="0" step="0.1">
                         <label>
-                            City center distance
+                            City maximum distance
                         </label>
                     </div>
                 </div>
@@ -120,26 +120,40 @@ $hotels = [
                 </div>
             </form>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col" class="hotel-name"></th>
-                        <th scope="col" class="hotel-parking"></th>
-                        <th scope="col" class="hotel-vote"></th>
-                        <th scope="col" class="hotel-distance"></th>
-                        <th scope="col" class="hotel-description"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row" class="hotel-name"></th>
-                        <td class="hotel-parking"></td>
-                        <td class="hotel-vote"></td>
-                        <td class="hotel-distance"></td>
-                        <td class="hotel-description"></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <?php foreach ($hotels[1] as $key => $value) : ?>
+                                <th scope="col" <?php echo "class='$key'" ?>><?php echo strtoupper(strtok($key, "_")) ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($hotels as $hotel) : ?>
+                            <tr>
+                                <?php foreach ($hotel as $key => $value) : ?>
+                                    <td <?php echo "class='$key'" ?>>
+                                        <?php
+                                        if ($key === 'parking') {
+                                            echo $value ? 'Yes' : 'No';
+                                        } else if ($key === 'vote') {
+                                            for ($index = 0; $index < $value; $index++) {
+                                                echo '<i class="fa-solid fa-star"></i>';
+                                            }
+                                        } else if ($key === 'distance_to_center') {
+                                            echo "$value km";
+                                        } else {
+                                            echo $value;
+                                        }
+                                        ?>
+                                    </td>
+                                <?php endforeach; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </main>
     </div>
 </body>

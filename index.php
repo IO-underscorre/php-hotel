@@ -36,6 +36,10 @@ $hotels = [
         'distance_to_center' => 50
     ]
 ];
+
+$is_parking_present = isset($_GET['parking']) ? true : false;
+$min_vote = isset($_GET['vote']) ? intval($_GET['vote']) : false;
+$max_city_distance = isset($_GET['city-distance']) && $_GET['city-distance'] !== '' ? intval($_GET['city-distance']) : false;
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +66,7 @@ $hotels = [
             <form class="filter-form" action="index.php" method="GET">
                 <div class="inputs-section">
                     <label class="input-group">
-                        <input type="checkbox">
+                        <input type="checkbox" name="parking">
                         <span class="checkmark"></span>
                         Parking
                     </label>
@@ -70,44 +74,44 @@ $hotels = [
 
                 <div class="inputs-section">
                     <div class="input-group">
-                        <input type="number" name="city-distance" min="0" step="0.1">
+                        <input type="number" name="city-distance" min="0" step="0.1" placeholder="City maximum distance">
                         <label>
-                            City maximum distance
+                            Distance
                         </label>
                     </div>
                 </div>
 
                 <div class="inputs-section vote">
                     <div class="input-group">
-                        <input type="radio" name="minimum-value" value="1">
+                        <input type="radio" name="vote" value="1">
                         <label class="input-group">
                             <i class="fa-solid fa-star"></i>
                         </label>
                     </div>
 
                     <div class="input-group">
-                        <input type="radio" name="minimum-value" value="2">
+                        <input type="radio" name="vote" value="2">
                         <label class="input-group">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </label>
                     </div>
 
                     <div class="input-group">
-                        <input type="radio" name="minimum-value" value="3">
+                        <input type="radio" name="vote" value="3">
                         <label class="input-group">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </label>
                     </div>
 
                     <div class="input-group">
-                        <input type="radio" name="minimum-value" value="4">
+                        <input type="radio" name="vote" value="4">
                         <label class="input-group">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </label>
                     </div>
 
                     <div class="input-group">
-                        <input type="radio" name="minimum-value" value="5">
+                        <input type="radio" name="vote" value="5">
                         <label class="input-group">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </label>
@@ -131,25 +135,32 @@ $hotels = [
                     </thead>
                     <tbody>
                         <?php foreach ($hotels as $hotel) : ?>
-                            <tr>
-                                <?php foreach ($hotel as $key => $value) : ?>
-                                    <td <?php echo "class='$key'" ?>>
-                                        <?php
-                                        if ($key === 'parking') {
-                                            echo $value ? 'Yes' : 'No';
-                                        } else if ($key === 'vote') {
-                                            for ($index = 0; $index < $value; $index++) {
-                                                echo '<i class="fa-solid fa-star"></i>';
+                            <?php if (
+                                ($hotel['distance_to_center'] <= $max_city_distance || $max_city_distance === false) and
+                                ($hotel['vote'] >= $min_vote || $min_vote === false) and
+                                ($hotel['parking'] || !$is_parking_present)
+                            ) : ?>
+                                <tr>
+                                    <?php foreach ($hotel as $key => $value) : ?>
+                                        <td <?php echo "class='$key'" ?>>
+                                            <?php
+                                            if ($key === 'parking') {
+                                                echo $value ? 'Yes' : 'No';
+                                            } else if ($key === 'vote') {
+                                                for ($index = 0; $index < $value; $index++) {
+                                                    echo '<i class="fa-solid fa-star"></i>';
+                                                }
+                                            } else if ($key === 'distance_to_center') {
+                                                echo "$value km";
+                                            } else {
+                                                echo $value;
                                             }
-                                        } else if ($key === 'distance_to_center') {
-                                            echo "$value km";
-                                        } else {
-                                            echo $value;
-                                        }
-                                        ?>
-                                    </td>
-                                <?php endforeach; ?>
-                            </tr>
+                                            ?>
+                                        </td>
+                                    <?php endforeach; ?>
+                                </tr>
+                            <?php endif;
+                            ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

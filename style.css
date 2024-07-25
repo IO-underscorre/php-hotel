@@ -3,3 +3,172 @@
     margin: 0;
     padding: 0;
 }
+
+:root {
+    font-size: 16px;
+
+    --clr-primary: #245b99;
+    --clr-secondary: #30393f;
+    --clr-secondary-transparent: #30393f80;
+    --clr-vote: #e0b72f;
+    --clr-details: #f7f7f7;
+}
+
+body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: var(--clr-secondary);
+    background-color: var(--clr-details);
+}
+
+.page-wrapper {
+    width: 95%;
+    max-width: 100rem;
+    margin: 5vh auto 0;
+}
+
+header {
+    border-bottom: 1px solid var(--clr-secondary);
+    padding-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: var(--clr-primary);
+}
+
+.vote:not(th) {
+    color: var(--clr-vote);
+}
+
+.filter-form {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: 1.5rem .5rem;
+    overflow: auto;
+}
+
+.inputs-section {
+    flex: 0 0 fit-content;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: .375rem;
+}
+
+.input-group>* {
+    flex: 0 0 max-content;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    accent-color: var(--clr-primary);
+}
+
+[type="number"] {
+    padding: .125rem;
+    outline: none;
+    appearance: none;
+    border-radius: .125rem;
+    border: 1px solid var(--clr-secondary);
+}
+
+[type="number"]:focus {
+    border-color: var(--clr-primary);
+}
+
+button {
+    appearance: none;
+    border: 1px solid var(--clr-secondary);
+    color: var(--clr-secondary);
+    border-radius: .25rem;
+    padding: .25rem .5rem;
+    font-weight: 700;
+}
+
+button:hover {
+    box-shadow: 0 0 .25rem #00000080;
+}
+
+button:active {
+    background-color: var(--clr-primary);
+    color: var(--clr-details);
+    box-shadow: inset 0 0 .5rem #00000080;
+}
+
+.table-wrapper {
+    overflow: auto;
+}
+
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+    all: unset;
+}
+
+table {
+    display: block;
+    width: 100%;
+    min-width: 40rem;
+}
+
+thead,
+tbody {
+    width: 100%;
+}
+
+thead {
+    font-weight: 700;
+    color: var(--clr-primary);
+}
+
+tr {
+    display: flex;
+}
+
+tbody tr {
+    border-top: 1px solid var(--clr-secondary-transparent);
+}
+
+th,
+td {
+    padding: .5rem .25rem;
+}
+
+.name {
+    flex-basis: 25%;
+}
+
+.description {
+    flex-basis: 35%;
+}
+
+.parking {
+    flex-basis: 10%;
+    text-align: center;
+}
+
+th.vote,
+td.vote {
+    flex-basis: 20%;
+    text-align: center;
+}
+
+.distance_to_center {
+    flex-basis: 10%;
+    text-align: center;
+}

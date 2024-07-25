@@ -137,7 +137,7 @@ $max_city_distance = isset($_GET['city-distance']) && $_GET['city-distance'] !==
                         <?php foreach ($hotels as $hotel) : ?>
                             <?php if (
                                 ($hotel['distance_to_center'] <= $max_city_distance || $max_city_distance === false) and
-                                ($hotel['vote'] >= $min_vote || $min_vote === false) and
+                                ($hotel['vote'] >= $min_vote || !$min_vote) and
                                 ($hotel['parking'] || !$is_parking_present)
                             ) : ?>
                                 <tr>
